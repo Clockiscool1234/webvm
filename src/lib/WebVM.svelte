@@ -282,16 +282,16 @@
 		}
 		blockCache = await CheerpX.IDBDevice.create(cacheId);
 		var overlayDevice = await CheerpX.OverlayDevice.create(blockDevice, blockCache);
-		var webDevice = await CheerpX.WebDevice.create("");
-		var documentsDevice = await CheerpX.WebDevice.create("documents");
-		var dataDevice = await CheerpX.DataDevice.create();
+		//var webDevice = await CheerpX.WebDevice.create("");
+		//var documentsDevice = await CheerpX.WebDevice.create("documents");
+		//var dataDevice = await CheerpX.DataDevice.create();
 		var mountPoints = [
 			// The root filesystem, as an Ext2 image
 			{type:"ext2", dev:overlayDevice, path:"/"},
 			// Access to files on the Web server, relative to the current page
-			{type:"dir", dev:webDevice, path:"/web"},
+			// no need {type:"dir", dev:webDevice, path:"/web"},
 			// Access to read-only data coming from JavaScript
-			{type:"dir", dev:dataDevice, path:"/data"},
+			// no need {type:"dir", dev:dataDevice, path:"/data"},
 			// Automatically created device files
 			{type:"devs", path:"/dev"},
 			// Pseudo-terminals
@@ -301,7 +301,7 @@
 			// The Linux 'sysfs' filesystem which is used to enumerate emulated devices
 			{type:"sys", path:"/sys"},
 			// Convenient access to sample documents in the user directory
-			{type:"dir", dev:documentsDevice, path:"/home/user/documents"}
+			// this is causing errors {type:"dir", dev:documentsDevice, path:"/home/user/documents"}
 		];
 		try
 		{
