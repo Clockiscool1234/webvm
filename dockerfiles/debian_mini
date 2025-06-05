@@ -8,6 +8,7 @@ RUN apt-get -y remove xserver-xorg-video-amdgpu \
     xserver-xorg-video-ati xserver-xorg-video-intel \
     xserver-xorg-video-nouveau xserver-xorg-video-qxl \
     xserver-xorg-video-radeon xserver-xorg-video-vmware
+RUN useradd -m user && echo "user:password" | chpasswd
 
 WORKDIR /root
 ENV HOME="/root" TERM="xterm" USER="root" SHELL="/bin/bash" EDITOR="nano" LANG="en_US.UTF-8" LC_ALL="C" DISPLAY=:0
